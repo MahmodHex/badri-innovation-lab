@@ -240,21 +240,23 @@ const Products = () => {
       id: 1,
       name: 'Badri POS Pro',
       desc: 'A complete point-of-sale system for retail businesses with real-time analytics and inventory synchronization.',
-      image: 'https://images.unsplash.com/photo-1556742049-0a67e5572240?auto=format&fit=crop&w=700&q=80'
+      // নতুন ও ১০০% কাজ করা POS সিস্টেম ইমেজ
+      image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=800&q=80'
     },
     {
       id: 2,
       name: 'Badri Inventory Hub',
       desc: 'Cloud-based inventory management tool to track stock and asset lifecycles across multiple distributed facilities.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80'
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80'
     },
     {
       id: 3,
       name: 'Badri AI Chatbot',
       desc: 'An AI-powered customer support bot that integrates seamlessly with your web platforms and mobile apps.',
-      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=700&q=80'
+      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80'
     }
   ];
+  
 
   return (
     <PageContainer>
