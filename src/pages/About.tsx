@@ -96,19 +96,23 @@ const TimelineRight = styled.div`
   align-items: center;
 `;
 
-// ✅ ইমেজের জন্য বক্স (আপনি শুধু src এর ভেতরে নাম দেবেন)
 const ImageBox = styled.div`
   width: 100%;
   max-width: 500px;
   height: 350px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -116,7 +120,6 @@ const ImageBox = styled.div`
   }
 `;
 
-// ✅ বড় গ্রিন স্ট্যাট গ্রাফিক (ইমেজ লাগবে না, কোডেই তৈরি)
 const StatGraphic = styled.div`
   position: relative;
   width: 300px;
@@ -135,12 +138,18 @@ const StatGraphic = styled.div`
     height: 200px;
   }
 `;
+
 const BigNumber = styled.div`
-  font-size: 4.5rem; font-weight: 800; line-height: 1;
+  font-size: 4.5rem; 
+  font-weight: 800; 
+  line-height: 1;
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) { font-size: 3.5rem; }
 `;
+
 const BigLabel = styled.div`
-  font-size: 1.2rem; font-weight: 500; margin-top: 0.5rem;
+  font-size: 1.2rem; 
+  font-weight: 500; 
+  margin-top: 0.5rem;
 `;
 
 // CTA Section
@@ -165,27 +174,46 @@ const CTASection = styled.section`
 `;
 
 const CTATitle = styled.h2`
-  font-size: 3rem; font-weight: 700; margin-bottom: 2rem; position: relative; z-index: 1;
+  font-size: 3rem; 
+  font-weight: 700; 
+  margin-bottom: 2rem; 
+  position: relative; 
+  z-index: 1;
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) { font-size: 2.2rem; }
 `;
 
 const CTAButtonGroup = styled.div`
-  display: flex; justify-content: center; gap: 1.5rem; position: relative; z-index: 1;
+  display: flex; 
+  justify-content: center; 
+  gap: 1.5rem; 
+  position: relative; 
+  z-index: 1;
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) { flex-direction: column; align-items: center; }
 `;
 
 const ButtonPrimary = styled.a`
-  background: ${({ theme }) => theme.colors.darkText}; color: white; padding: 1rem 2.5rem;
-  border-radius: 50px; font-weight: 600; text-decoration: none; transition: transform 0.3s;
+  background: ${({ theme }) => theme.colors.darkText}; 
+  color: white; 
+  padding: 1rem 2.5rem;
+  border-radius: 50px; 
+  font-weight: 600; 
+  text-decoration: none; 
+  transition: transform 0.3s;
   &:hover { transform: translateY(-3px); }
 `;
+
 const ButtonOutline = styled.a`
-  background: transparent; color: white; padding: 1rem 2.5rem; border-radius: 50px;
-  font-weight: 600; border: 2px solid white; text-decoration: none; transition: background 0.3s;
+  background: transparent; 
+  color: white; 
+  padding: 1rem 2.5rem; 
+  border-radius: 50px;
+  font-weight: 600; 
+  border: 2px solid white; 
+  text-decoration: none; 
+  transition: background 0.3s;
   &:hover { background: rgba(255,255,255,0.1); }
 `;
 
-// --- COMPONENT ---
 const About = () => {
   return (
     <PageContainer>
@@ -205,8 +233,10 @@ const About = () => {
           </TimelineLeft>
           <TimelineRight>
             <ImageBox>
-              {/* 🔥 এখানে আপনার ইমেজের নাম বসান: src="/src/assets/images/design.jpg" */}
-              <img src="/src/assets/images/design.jpg" alt="Design" />
+              <img 
+                src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80" 
+                alt="Product UI/UX Design" 
+              />
             </ImageBox>
           </TimelineRight>
         </TimelineItem>
@@ -221,8 +251,10 @@ const About = () => {
           </TimelineLeft>
           <TimelineRight>
             <ImageBox>
-              {/* 🔥 এখানে আপনার ইমেজের নাম বসান: src="/src/assets/images/coding.jpg" */}
-              <img src="/src/assets/images/coding.jpg" alt="Coding" />
+              <img 
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" 
+                alt="Software Coding and Engineering" 
+              />
             </ImageBox>
           </TimelineRight>
         </TimelineItem>
@@ -249,7 +281,7 @@ const About = () => {
         <CTATitle>Ready to start your <br /> next big idea?</CTATitle>
         <CTAButtonGroup>
           <ButtonPrimary href="/contact">Talk to Sales</ButtonPrimary>
-          <ButtonOutline href="/blog">Explore Our Work</ButtonOutline>
+          <ButtonOutline href="/work">Explore Our Work</ButtonOutline>
         </CTAButtonGroup>
       </CTASection>
     </PageContainer>
@@ -257,4 +289,3 @@ const About = () => {
 };
 
 export default About;
-

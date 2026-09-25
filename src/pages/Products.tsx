@@ -73,6 +73,7 @@ const HeroImageWrap = styled.div`
   background: ${({ theme }) => theme.colors.lightGreenAccent};
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 
   img {
     width: 100%;
@@ -86,7 +87,7 @@ const HeroImageWrap = styled.div`
 `;
 
 // 2. Products Grid
-const ProductsSection = styled.section`
+const ProductsSectionContainer = styled.section`
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem 4rem 5rem;
@@ -125,38 +126,40 @@ const Grid = styled.div`
 const ProductCard = styled(Link)`
   background: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
-  padding: 2.5rem 2rem;
+  padding: 2rem;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  border: 1px solid #f1f5f9;
   text-decoration: none;
   color: inherit;
   transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 168, 107, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 35px rgba(0, 168, 107, 0.15);
     border-color: ${({ theme }) => theme.colors.primaryGreen};
   }
 `;
 
 const ProductImageWrapper = styled.div`
   width: 100%;
-  height: 160px;
-  background: ${({ theme }) => theme.colors.lightGreenAccent};
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
-  color: ${({ theme }) => theme.colors.primaryGreen};
+  height: 180px;
+  border-radius: 14px;
   overflow: hidden;
+  margin-bottom: 1.5rem;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  ${ProductCard}:hover & img {
+    transform: scale(1.05);
   }
 `;
 
@@ -179,9 +182,10 @@ const LearnMoreText = styled.span`
   color: ${({ theme }) => theme.colors.primaryGreen};
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 
-  &:hover {
+  ${ProductCard}:hover & {
     text-decoration: underline;
   }
 `;
@@ -230,31 +234,25 @@ const CTAButton = styled(Link)`
   }
 `;
 
-
-// --- COMPONENT ---
 const Products = () => {
-  // 🔥 ভবিষ্যতে নতুন প্রোডাক্ট যোগ করতে চাইলে, শুধু এই লিস্টে যোগ করুন
   const productList = [
     {
       id: 1,
       name: 'Badri POS Pro',
-      desc: 'A complete point-of-sale system for retail businesses with real-time analytics.',
-      icon: '🛒',
-      image: '/src/assets/images/product1.jpg' // ইমেজ চাইলে এখানে বসান
+      desc: 'A complete point-of-sale system for retail businesses with real-time analytics and inventory synchronization.',
+      image: 'https://images.unsplash.com/photo-1556742049-0a67e5572240?auto=format&fit=crop&w=700&q=80'
     },
     {
       id: 2,
       name: 'Badri Inventory Hub',
-      desc: 'Cloud-based inventory management tool to track stock across multiple warehouses.',
-      icon: '📦',
-      image: '/src/assets/images/product2.jpg'
+      desc: 'Cloud-based inventory management tool to track stock and asset lifecycles across multiple distributed facilities.',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80'
     },
     {
       id: 3,
       name: 'Badri AI Chatbot',
-      desc: 'An AI-powered customer support bot that integrates seamlessly with your website.',
-      icon: '🤖',
-      image: '/src/assets/images/product3.jpg'
+      desc: 'An AI-powered customer support bot that integrates seamlessly with your web platforms and mobile apps.',
+      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=700&q=80'
     }
   ];
 
@@ -273,14 +271,16 @@ const Products = () => {
         </HeroLeft>
         <HeroRight>
           <HeroImageWrap>
-            {/* 🔥 এখানে আপনার ইমেজ বসান: src="/src/assets/images/product-hero.jpg" */}
-            <img src="/src/assets/images/product-hero.jpg" alt="Products Showcase" />
+            <img 
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+              alt="Products Showcase" 
+            />
           </HeroImageWrap>
         </HeroRight>
       </HeroSection>
 
       {/* 2. Product Grid */}
-      <ProductsSection>
+      <ProductsSectionContainer>
         <SectionTitle>
           Our <span>Flagship</span> Products.
         </SectionTitle>
@@ -288,20 +288,17 @@ const Products = () => {
           {productList.map((product) => (
             <ProductCard key={product.id} to="/contact">
               <ProductImageWrapper>
-                {/* যদি ইমেজ থাকে তাহলে img দেখাবে, না থাকলে আইকন দেখাবে */}
-                {product.image ? (
-                  <img src={product.image} alt={product.name} />
-                ) : (
-                  <span>{product.icon}</span>
-                )}
+                <img src={product.image} alt={product.name} />
               </ProductImageWrapper>
-              <ProductName>{product.name}</ProductName>
-              <ProductDesc>{product.desc}</ProductDesc>
+              <div>
+                <ProductName>{product.name}</ProductName>
+                <ProductDesc>{product.desc}</ProductDesc>
+              </div>
               <LearnMoreText>Learn More →</LearnMoreText>
             </ProductCard>
           ))}
         </Grid>
-      </ProductsSection>
+      </ProductsSectionContainer>
 
       {/* 3. CTA Section */}
       <CTASection>
@@ -317,4 +314,3 @@ const Products = () => {
 };
 
 export default Products;
-

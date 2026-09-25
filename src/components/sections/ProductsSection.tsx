@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-// --- STYLES ---
 const SectionContainer = styled.section`
   padding: 5rem 4rem;
   background: ${({ theme }) => theme.colors.lightBg};
@@ -46,30 +45,39 @@ const ProductGrid = styled.div`
 const ProductCard = styled.div`
   background: ${({ theme }) => theme.colors.white};
   border-radius: 20px;
-  padding: 2.5rem 2rem;
+  padding: 2rem;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
   border: 1px solid rgba(0,0,0,0.03);
   transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 168, 107, 0.15);
     border-color: ${({ theme }) => theme.colors.primaryGreen};
   }
 `;
 
-const ProductImagePlaceholder = styled.div`
+const ProductImageWrap = styled.div`
   width: 100%;
-  height: 150px;
-  background: ${({ theme }) => theme.colors.lightGreenAccent};
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
+  height: 160px;
+  border-radius: 14px;
+  overflow: hidden;
   margin-bottom: 1.5rem;
-  color: ${({ theme }) => theme.colors.primaryGreen};
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  ${ProductCard}:hover & img {
+    transform: scale(1.05);
+  }
 `;
 
 const ProductName = styled.h3`
@@ -83,6 +91,7 @@ const ProductDesc = styled.p`
   color: ${({ theme }) => theme.colors.grayText};
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
+  line-height: 1.6;
 `;
 
 const ProductLink = styled(Link)`
@@ -90,6 +99,7 @@ const ProductLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primaryGreen};
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 
   &:hover {
@@ -97,24 +107,23 @@ const ProductLink = styled(Link)`
   }
 `;
 
-// --- COMPONENT ---
 const ProductsSection = () => {
   const products = [
     {
       id: 1,
-      icon: '📊',
+      image: 'https://images.unsplash.com/photo-1556742049-0a67e5572240?auto=format&fit=crop&w=700&q=80',
       name: 'Badri POS Pro',
       desc: 'A complete point-of-sale system for retail businesses with real-time analytics.',
     },
     {
       id: 2,
-      icon: '📦',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=700&q=80',
       name: 'Badri Inventory Hub',
       desc: 'Cloud-based inventory management tool to track stock across multiple warehouses.',
     },
     {
       id: 3,
-      icon: '🤖',
+      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=700&q=80',
       name: 'Badri AI Chatbot',
       desc: 'An AI-powered customer support bot that integrates seamlessly with your website.',
     },
@@ -130,9 +139,13 @@ const ProductsSection = () => {
       <ProductGrid>
         {products.map((product) => (
           <ProductCard key={product.id}>
-            <ProductImagePlaceholder>{product.icon}</ProductImagePlaceholder>
-            <ProductName>{product.name}</ProductName>
-            <ProductDesc>{product.desc}</ProductDesc>
+            <ProductImageWrap>
+              <img src={product.image} alt={product.name} />
+            </ProductImageWrap>
+            <div>
+              <ProductName>{product.name}</ProductName>
+              <ProductDesc>{product.desc}</ProductDesc>
+            </div>
             <ProductLink to="/products">Learn More →</ProductLink>
           </ProductCard>
         ))}
@@ -142,4 +155,3 @@ const ProductsSection = () => {
 };
 
 export default ProductsSection;
-
